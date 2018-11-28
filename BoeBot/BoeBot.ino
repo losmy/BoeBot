@@ -3,8 +3,8 @@
 const int pingPin = 7;
 const int turretPin=12;
 const int tmitt=40;
-const int stepCount=20;
-long distArr[tmitt*2/stepCount] = { 0 };
+const int stepCount=5;
+long distArr[tmitt*2/stepCount+1] = { 0 };
 boolean startScan = false;
 Servo turret;
 int i=0;
@@ -27,6 +27,7 @@ void loop(){
   if(startScan)
   {
      distArr[i/stepCount]=getDistance();
+     //Serial.println(i/stepCount);
      findMaxIndex();
     //for(int j=0;j<tmitt*2;j+=stepCount){
       /*Serial.print(distArr[i]);

@@ -38,12 +38,15 @@ int findMaxIndex(){
   int maxIndex= 0;
   long maxValue = 0;
   for(int j=0;j<tmitt*2/stepCount;j++){
-          Serial.println(j);
 
     if(distArr[j]>maxValue){
       maxIndex = j;
       maxValue = distArr[j];
     }
   }
+  Serial.print("Index: ");
+  Serial.print(maxIndex);
+  Serial.print(" dist: ");
+  Serial.println(distArr[maxIndex]);
   return maxIndex;
 }
