@@ -12,7 +12,7 @@ void turnTurret(){
       f=true;
     }
   }
-  //delay(40);
+  delay(stepCount*2);
 }
 
 long microsecondsToCentimeters(long microseconds) {
@@ -30,7 +30,8 @@ long getDistance()
   digitalWrite(pingPin, LOW);
   pinMode(pingPin, INPUT);
   duration = pulseIn(pingPin, HIGH);
-  delay(100);
+  delay(stepCount);
+  
   return microsecondsToCentimeters(duration);
 }
 
@@ -44,9 +45,5 @@ int findMaxIndex(){
       maxValue = distArr[j];
     }
   }
-  Serial.print("Index: ");
-  Serial.print(maxIndex);
-  Serial.print(" dist: ");
-  Serial.println(distArr[maxIndex]);
   return maxIndex;
 }
