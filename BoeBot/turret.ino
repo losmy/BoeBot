@@ -14,3 +14,7 @@ void turnTurret(){
   }
   delay(5);
 }
+
+long microsecondsToCentimeters(long microseconds) {
+  return microseconds / 29 / 2;
+}

@@ -23,12 +23,7 @@ void loop(){
   pinMode(pingPin, INPUT);
   duration = pulseIn(pingPin, HIGH);
   cm = microsecondsToCentimeters(duration);
- // Serial.print(cm);
-  //Serial.print("cm");
-  //Serial.println();
-}
-
-
-long microsecondsToCentimeters(long microseconds) {
-  return microseconds / 29 / 2;
+  Serial.print(cm);
+  Serial.print("cm");
+  Serial.println();
 }
