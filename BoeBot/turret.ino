@@ -18,3 +18,18 @@ void turnTurret(){
 long microsecondsToCentimeters(long microseconds) {
   return microseconds / 29 / 2;
 }
+
+long getDistance()
+{
+  long duration, cm;
+  pinMode(pingPin, OUTPUT);
+  digitalWrite(pingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin, LOW);
+  pinMode(pingPin, INPUT);
+  duration = pulseIn(pingPin, HIGH);
+  
+  return microsecondsToCentimeters(duration);
+}
