@@ -31,15 +31,17 @@ void moveRobot(int distToMiddle)
   if(distToMiddle > 0)
   {
     
-    decRight = map(distToMiddle,0,40,0,200);
-    decRight = decRight/10000;
-    Serial.println((String)"H:" + decRight);
+    //decRight = map(distToMiddle,0,40,0,200);
+    //decRight = decRight/10000;
+      decRight = distToMiddle/20 * startDecValue;
+    Serial.println((String)"H:" + rightConst);
   }
   if(distToMiddle < 0)
   {
-    decLeft = map(distToMiddle,0,40,0,200);
-    decLeft = decLeft/10000;
-    Serial.println((String)"V:" + decLeft);
+    //decLeft = map(distToMiddle,0,40,0,200);
+    //decLeft = decLeft/10000;
+    decLeft = abs(distToMiddle/20 * startDecValue);
+   // Serial.println((String)"V:" + leftConst);
   }
 
 
@@ -50,7 +52,7 @@ void moveRobot(int distToMiddle)
     if(rightConst < 0)
       rightConst = 0;
   }
-  else if(distToMiddle < 0 && rightConst < 1)
+  else if(distToMiddle < 0 )
   {
      rightConst += incrRight;
       if(rightConst > 1)
@@ -63,7 +65,7 @@ void moveRobot(int distToMiddle)
     if(leftConst < 0)
       leftConst = 0;
   }
-  else if(distToMiddle > 0 && leftConst < 1)
+ else if(distToMiddle > 0)
   {
     leftConst += incrLeft;
     if(leftConst > 1)

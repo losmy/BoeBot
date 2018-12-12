@@ -12,14 +12,14 @@ void turnTurret(){
       f=true;
     }
   }
-  delay(stepCount*2);
+  //delay(stepCount*2);
 }
 
 long microsecondsToCentimeters(long microseconds) {
   return microseconds / 29 / 2;
 }
 
-long getDistance()
+int getDistance()
 {
   long duration, cm;
   pinMode(pingPin, OUTPUT);
@@ -31,8 +31,8 @@ long getDistance()
   pinMode(pingPin, INPUT);
   duration = pulseIn(pingPin, HIGH);
   delay(stepCount);
-  
-  return microsecondsToCentimeters(duration);
+  return duration;
+  //return microsecondsToCentimeters(duration);
 }
 
 int findMaxIndex(){

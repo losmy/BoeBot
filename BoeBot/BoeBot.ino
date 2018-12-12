@@ -4,7 +4,7 @@ const int pingPin = 7;
 const int turretPin=12;
 const int tmitt=40;
 const int stepCount= 5;
-long distArr[tmitt*2/stepCount+1] = { 0 };
+int distArr[tmitt*2/stepCount+1] = { 0 };
 boolean startScan = false;
 Servo turret;
 Servo servoLeft;
@@ -36,6 +36,7 @@ void loop(){
   else
   {
       distArr[i/stepCount]=getDistance();  
+      //Serial.println(getDistance());
   }
   turnTurret();
   if(startScan)
