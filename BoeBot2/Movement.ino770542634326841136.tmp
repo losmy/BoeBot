@@ -1,0 +1,56 @@
+int maxConst = 100;
+int leftConst = maxConst; 
+int rightConst = maxConst;
+
+int startDec;
+
+int decRight = 10;
+int decLeft = 10;
+int incRight = 10;
+int incLeft = 10;
+//negative = turn right
+//positve = turn left
+
+void moveRobot()
+{
+  if(offset < 0)//negative = turn right
+  {
+    if(offset < -50)
+      decRight = decRight * 2;
+    else
+      decRight = startDec;
+      
+    rightConst -= decRight;
+    leftConst +=  incLeft;
+  }
+  else if(offset > 0)//positive = turn left
+  {
+    leftConst -= decLeft;
+    rightConst += incRight;
+  }
+
+  rightConst = constrain(rightConst,0,maxConst);
+  leftConst = constrain(leftConst,0,maxConst);
+  Serial.print(rightConst);
+  Serial.print(":");
+  Serial.print(leftConst);
+  Serial.println(); 
+
+
+  setLeftSpeed();
+  setRightSpeed();
+}
+
+
+
+void setLeftSpeed()
+{
+  int leftSpeed = 1500+(leftConst);
+  servoLeft.writeMicroseconds(leftSpeed);
+}
+
+void setRightSpeed()
+{
+  int rightSpeed = 1500-(rightConst);
+  servoRight.writeMicroseconds(rightSpeed);
+}

@@ -2,9 +2,9 @@
 
 const int pingPin = 7;
 const int turretPin=12;
-const int tmitt=40;
-const int stepCount= 5;
-int distArr[tmitt*2/stepCount+1] = { 0 };
+const int tmitt=70;
+const int stepCount= 14;
+int distArr[(tmitt*2/stepCount)+1] = { 0 };
 boolean startScan = false;
 Servo turret;
 Servo servoLeft;
@@ -21,11 +21,11 @@ pinMode(12,OUTPUT);
 pinMode(8,INPUT);
 servoLeft.attach(10);
 servoRight.attach(11);
-turret.write(tmitt);
+turret.write(140);
 Serial.begin(9600);
 Serial.print("ArraySize:");
 Serial.println(tmitt*2/stepCount+1);
-delay(5000);
+delay(2000);
 }
 
 void loop(){
@@ -36,15 +36,30 @@ void loop(){
   else
   {
       distArr[i/stepCount]=getDistance();  
-      //Serial.println(getDistance());
+      //Serial.println(i/stepCount);
   }
   turnTurret();
   if(startScan)
   {
-        distArr[i/stepCount]=getDistance();   
-        moveRobot(distanceFromMiddle(findMaxIndex()));     
-  }
+        distArr[i/stepCount]=getDistance(); 
+        int maxIndex = findMaxIndex();  
+        moveRobot(distanceFromMiddle(maxIndex),distArr[maxIndex]);     
+}
+    /*  if(i == 80)
+      {
+          for(int p = 0; p < ((tmitt*2/stepCount)+1); p++)
+          {
+            Serial.print(p);
+            Serial.print(":");
+            Serial.print( distArr[p]);
+            Serial.print(",");
+          }
+          Serial.println();
+          findMaxIndex();
+      }*/
+
           
+        
     //delay(stepCount);
 }
 
@@ -52,7 +67,7 @@ void loop(){
 int distanceFromMiddle(int index)
 {
   index = index * stepCount;
-
+  
   int dist = tmitt - index;
   
 
